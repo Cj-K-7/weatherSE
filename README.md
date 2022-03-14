@@ -1,34 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Weather Serching 
 
-## Getting Started
+이번 프로젝트 목표는
 
-First, run the development server:
+NEXT JS를 활용
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Static Props  => 기본 지역을 서울로 해서 서울 날씨와 앞으로 +N 일 날씨 정보를 추가
+Server Side Props => 도시를 검색해서 해당 도시의 날씨 정보, 그리고 가능하면 추가 여행팁을 붙여보자.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+두 방식을 확실하게 익히기. 및
+SSR방식을 활용한 백엔드에서 redirect / rewrite 사용해보기
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+2022.03.14 
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+1. Static Props 와 Server Side Props를 활용해 언제 데이터를 가져올지, Asset 을 다룰지 선택할 수 있는 장점이 있다.
+단, Next Page 타입(page component) 내에서만 사용이 가능하고, 두 개를 동시에 사용할 수 없다.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+2. NEXT JS 를 통해 SSR 개념을 익히다보면 클라이언트 단계와 서버단계, 브라우저에서의 렌더링 타이밍에 대한 개념이 구체적으로 어떻게 되는지 체감하기 쉽다.
+게다가 자체적인 HTML tag Extension 들이 있는데, prerendering 이 기본이기 때문에 어떤 상황에서 활용해야하는게 좋은지 판단해야한다.
+무조건 server-side가 아닌 state사용을 해야하거나, 유저의 동의를 얻어야 하는 경우 등등 client에서 구현해야할 부분을 미리 계획해나가야 할 것같다.
