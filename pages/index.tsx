@@ -1,4 +1,6 @@
 import type { GetStaticProps, NextPage } from "next";
+import Router, { useRouter } from "next/router";
+import React, { useState } from "react";
 import Meta from "../components/Meta";
 import { IRecentData, IWeatherData } from "../components/types";
 
@@ -8,13 +10,31 @@ interface IHomeProps {
 }
 
 const Home: NextPage<IHomeProps> = ({ weatherData, recentData }) => {
-  const weatherIconUrl = (id:string) => `http://openweathermap.org/img/wn/${id}@2x.png`;
+  const [city , setCity] = useState<string>();
+  const router = useRouter();
+  const weatherIconUrl = (id: string) =>
+    `http://openweathermap.org/img/wn/${id}@2x.png`;
+  const onChange = (event:React.ChangeEvent<HTMLInputElement>) =>{
+    const {
+      currentTarget: { value },
+    } = event;
+    setCity(value);
+  }
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    router.push(`/search/${city}`);
+  };
   return (
     <div>
       <Meta />
       <div>
         <div>{weatherData.weather[0].main}</div>
-        <img width={50} height={50} src={weatherIconUrl(weatherData.weather[0].icon)} alt="weatherIcon" />
+        <img
+          width={50}
+          height={50}
+          src={weatherIconUrl(weatherData.weather[0].icon)}
+          alt="weatherIcon"
+        />
         <div>{weatherData.main.temp}</div>
         <div>{weatherData.main.pressure}</div>
         <div>
@@ -29,12 +49,20 @@ const Home: NextPage<IHomeProps> = ({ weatherData, recentData }) => {
               <div>{a.dt}</div>
               <div>{a.weather[0].main}</div>
               <div>{a.temp}</div>
-              <img width={50} height={50} src={weatherIconUrl(a.weather[0].icon)} alt="weatherIcon" />
+              <img
+                width={50}
+                height={50}
+                src={weatherIconUrl(a.weather[0].icon)}
+                alt="weatherIcon"
+              />
             </div>
           ))}
         </div>
       </div>
-      <input type="text" />
+      <form onSubmit={onSubmit}>
+        <input onChange={onChange} type="text" placeholder="Zip Code"/>
+        <input type="submit" />
+      </form>
     </div>
   );
 };
