@@ -1,8 +1,10 @@
 import type { GetStaticProps, NextPage } from "next";
-import Router, { useRouter } from "next/router";
-import React, { useState } from "react";
+import React from "react";
+import City from "../components/City";
+import Forecast from "../components/Forecast";
+import Header from "../components/Header";
 import Meta from "../components/Meta";
-import { IRecentData, IWeatherData } from "../components/types";
+import { IRecentData, IWeatherData, ICityProps } from "../components/types";
 
 interface IHomeProps {
   weatherData: IWeatherData;
@@ -10,59 +12,50 @@ interface IHomeProps {
 }
 
 const Home: NextPage<IHomeProps> = ({ weatherData, recentData }) => {
-  const [city , setCity] = useState<string>();
-  const router = useRouter();
-  const weatherIconUrl = (id: string) =>
-    `http://openweathermap.org/img/wn/${id}@2x.png`;
-  const onChange = (event:React.ChangeEvent<HTMLInputElement>) =>{
-    const {
-      currentTarget: { value },
-    } = event;
-    setCity(value);
-  }
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    router.push(`/search/${city}`);
-  };
+  const sixtyHourWeather = recentData.hourly.slice(0, 16);
   return (
     <div>
       <Meta />
-      <div>
-        <div>{weatherData.weather[0].main}</div>
-        <img
-          width={50}
-          height={50}
-          src={weatherIconUrl(weatherData.weather[0].icon)}
-          alt="weatherIcon"
-        />
-        <div>{weatherData.main.temp}</div>
-        <div>{weatherData.main.pressure}</div>
+      <div className="box">
         <div>
-          {weatherData.wind.speed} / {weatherData.wind.deg}
+          <City {...weatherData} />
+        </div>
+        <div className="hours">
+          <h1 className="title">16 Hours Forecast</h1>
+          <div className="timezone">TimeZone : {recentData.timezone}</div>
+          <div className="gridTable">
+            {sixtyHourWeather.map((hourWeather, index) => (
+              <Forecast key={index} {...hourWeather} />
+            ))}
+          </div>
         </div>
       </div>
-      <div>
-        <div>{recentData.timezone}</div>
-        <div>
-          {recentData.hourly.map((a) => (
-            <div key={a.dt}>
-              <div>{a.dt}</div>
-              <div>{a.weather[0].main}</div>
-              <div>{a.temp}</div>
-              <img
-                width={50}
-                height={50}
-                src={weatherIconUrl(a.weather[0].icon)}
-                alt="weatherIcon"
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-      <form onSubmit={onSubmit}>
-        <input onChange={onChange} type="text" placeholder="Zip Code"/>
-        <input type="submit" />
-      </form>
+      <style jsx>{`
+        .gridTable {
+          display: grid;
+          grid-template-columns: repeat(8, 100px);
+        }
+        .hours {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+        }
+        .timezone {
+          align-self: flex-end;
+          margin-right: 16px;
+        }
+        @media (max-width: 1200px) {
+          .box {
+            display: flex;
+            align-items:center;
+            flex-direction: column;
+          }
+          .gridTable {
+          display: grid;
+          grid-template-columns: repeat(4, 100px);
+        }
+        }
+      `}</style>
     </div>
   );
 };
@@ -82,5 +75,6 @@ export const getStaticProps: GetStaticProps = async () => {
       `https://api.openweathermap.org/data/2.5/onecall?lat=${weatherData.coord.lat}&lon=${weatherData.coord.lon}&exclude=daily&appid=${APIKey}`
     )
   ).json();
+
   return { props: { weatherData, recentData } };
 };

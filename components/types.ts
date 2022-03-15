@@ -1,3 +1,14 @@
+export interface ICityProps {
+  id: number;
+  name: string;
+  state: string;
+  country: string;
+  coord: {
+      lon: number;
+      lat: number;
+  }
+}
+
 interface weather {
   id: number;
   main: string;
@@ -33,7 +44,7 @@ export interface IWeatherData {
   wind: { speed: number; deg: number };
 }
 
-interface hourlyWeather {
+export interface hourlyWeather {
   dt: number;
   temp: number;
   feels_like: number;

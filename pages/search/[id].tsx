@@ -3,15 +3,14 @@ import {
   InferGetServerSidePropsType,
   NextPage,
 } from "next";
+import City from "../../components/City";
 
 const Search: NextPage = ({
   cityWeather,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
-    <div>
-      <div>{cityWeather.name}</div>
-      <div>{cityWeather.main.temp}</div>
-      <div>{cityWeather.weather[0].main}</div>
+    <div className="box">
+      <City {...cityWeather}/>
     </div>
   );
 };
