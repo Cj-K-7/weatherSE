@@ -35,6 +35,11 @@ function City(weatherData: IWeatherData) {
           <div>{weatherData.wind.deg} deg </div>
           <div>{weatherData.wind.speed} m/s</div>
         </div>
+        {weatherData.rain &&
+        <div className="rain">
+          <h1>Rain :</h1>
+          <div>{weatherData.rain['1h']} mm</div>
+        </div>}
       </div>
       <style jsx>
         {`

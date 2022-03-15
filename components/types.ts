@@ -42,6 +42,8 @@ export interface IWeatherData {
   visibility: number;
   weather: weather[];
   wind: { speed: number; deg: number };
+  rain: { "1h" : number; "3h": number };
+  snow: { "1h" : number; "3h": number };
 }
 
 export interface hourlyWeather {

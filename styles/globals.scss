@@ -82,3 +82,11 @@ input:focus{
   display: flex;
   justify-content: center;
 }
+
+@media (max-width:1200px) {
+  .box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}

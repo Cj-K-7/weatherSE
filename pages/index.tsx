@@ -2,7 +2,6 @@ import type { GetStaticProps, NextPage } from "next";
 import React from "react";
 import City from "../components/City";
 import Forecast from "../components/Forecast";
-import Header from "../components/Header";
 import Meta from "../components/Meta";
 import { IRecentData, IWeatherData, ICityProps } from "../components/types";
 
