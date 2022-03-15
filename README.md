@@ -23,3 +23,10 @@ SSR방식을 활용한 백엔드에서 redirect / rewrite 사용해보기
 무조건 server-side가 아니라, 브라우저 내부에서 state사용을 해야하거나, 유저의 동의를 얻어야 하는 경우 등등 client에서 구현해야할 부분을 미리 계획해나가야 할 것같다.
 
 결론. NEXT.js 사용을 할 경우 buld-time , production time , 혹은 for every request 등등 어떤 시점에서 활용해야할지 파악하는데 도움이 된다.
+
+2022.03.15
+
+1. SCSS 추가. tutorial 맛보기
+
+2. 검색시 server side props 통해 데이터 페이지 fetching. 자동검색 추천 기능과 존재하지 않는 데이터 반응에 대한 페이지 필요. 
+
