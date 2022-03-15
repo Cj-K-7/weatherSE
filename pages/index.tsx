@@ -3,7 +3,7 @@ import React from "react";
 import City from "../components/City";
 import Forecast from "../components/Forecast";
 import Meta from "../components/Meta";
-import { IRecentData, IWeatherData, ICityProps } from "../components/types";
+import { IRecentData, IWeatherData } from "../components/types";
 
 interface IHomeProps {
   weatherData: IWeatherData;
@@ -21,7 +21,7 @@ const Home: NextPage<IHomeProps> = ({ weatherData, recentData }) => {
         </div>
         <div className="hours">
           <h1 className="title">16 Hours Forecast</h1>
-          <div className="timezone">TimeZone : {recentData.timezone}</div>
+          <div className="timezone">Time-Zone : {recentData.timezone}</div>
           <div className="gridTable">
             {sixtyHourWeather.map((hourWeather, index) => (
               <Forecast key={index} {...hourWeather} />
@@ -29,32 +29,6 @@ const Home: NextPage<IHomeProps> = ({ weatherData, recentData }) => {
           </div>
         </div>
       </div>
-      <style jsx>{`
-        .gridTable {
-          display: grid;
-          grid-template-columns: repeat(8, 100px);
-        }
-        .hours {
-          display: flex;
-          flex-direction: column;
-          width: 100%;
-        }
-        .timezone {
-          align-self: flex-end;
-          margin-right: 16px;
-        }
-        @media (max-width: 1200px) {
-          .box {
-            display: flex;
-            align-items:center;
-            flex-direction: column;
-          }
-          .gridTable {
-          display: grid;
-          grid-template-columns: repeat(4, 100px);
-        }
-        }
-      `}</style>
     </div>
   );
 };

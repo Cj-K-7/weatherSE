@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { HomeBtn } from "./SVGs";
 
+
 function Header() {
   const [city, setCity] = useState<string>();
   const router = useRouter();
+  
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
       currentTarget: { value },
@@ -20,7 +22,7 @@ function Header() {
     <div className="headerBox">
       <h1 className="homeTitle">City Weathers</h1>
       <form className="form" onSubmit={onSubmit} autoComplete="off">
-        {router.pathname === '/' ? null:<HomeBtn/> }
+        {router.pathname === '/' ? null: <><HomeBtn/></> }
         <input onChange={onChange} type="text" placeholder="City Name" />
         <input type="submit" value="Search" />
       </form>

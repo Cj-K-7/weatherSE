@@ -47,6 +47,7 @@ function City(weatherData: IWeatherData) {
           .CityBox {
             font-size : 20px;
             width: 400px;
+            min-width : 400px;
             margin: 30px 0px;
           }
           .city {

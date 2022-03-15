@@ -83,10 +83,28 @@ input:focus{
   justify-content: center;
 }
 
-@media (max-width:1200px) {
+.gridTable {
+  display: grid;
+  grid-template-columns: repeat(8, 100px);
+}
+.hours {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.timezone {
+  align-self: flex-end;
+  margin-right: 16px;
+}
+@media (max-width: 1200px) {
   .box {
     width: 100%;
     display: flex;
-    justify-content: center;
+    align-items:center;
+    flex-direction: column;
   }
+  .gridTable {
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+}
 }

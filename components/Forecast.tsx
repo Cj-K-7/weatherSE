@@ -4,7 +4,7 @@ import { weatherIconUrl } from "./utils";
 
 function Forecast(hourWeather: hourlyWeather) {
   const date = new Date(hourWeather.dt*1000)
-  const month = date.getMonth();
+  const month = date.getMonth()+1;
   const day = date.getDate();
   const hour = date.getHours();
   const time = hour<10 ? `0${hour}:00` : `${hour}:00`;
@@ -33,7 +33,7 @@ function Forecast(hourWeather: hourlyWeather) {
           margin-bottom: 12px;
         }
         .day {
-          font-size : 22px;
+          font-size : 24px;
           font-weight : 600;
           margin-bottom : 8px;
         }
