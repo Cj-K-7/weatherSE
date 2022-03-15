@@ -18,7 +18,7 @@ function Header() {
 
   return (
     <div className="headerBox">
-      <h1 className="homeTitle">City's Weathers</h1>
+      <h1 className="homeTitle">City Weathers</h1>
       <form className="form" onSubmit={onSubmit} autoComplete="off">
         {router.pathname === '/' ? null:<HomeBtn/> }
         <input onChange={onChange} type="text" placeholder="City Name" />

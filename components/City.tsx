@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { IWeatherData } from "./types";
 import { weatherIconUrl } from "./utils";
 
@@ -6,7 +7,7 @@ function City(weatherData: IWeatherData) {
     <div className="CityBox">
       <h1 className="city">{weatherData.name}</h1>
       <div className="main">
-        <img
+        <Image
           className="icon"
           width={150}
           height={150}

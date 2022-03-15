@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { hourlyWeather } from "./types";
 import { weatherIconUrl } from "./utils";
 
@@ -13,7 +14,7 @@ function Forecast(hourWeather: hourlyWeather) {
       <div className="hourWeather">
         <h1 className="day">{hour === 0? `${month}.${day}`: <br/>}</h1>
         <div className="time">{time}</div>
-        <img  width={75} height={75}
+        <Image  width={75} height={75}
           src={weatherIconUrl(hourWeather.weather[0].icon)}
           alt="weatherIcon"
         />
