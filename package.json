@@ -4,17 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "export": "next export"
   },
   "dependencies": {
-    "@types/react-query": "^1.2.9",
     "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-query": "^3.34.16",
     "sass": "^1.49.9"
   },
   "devDependencies": {
