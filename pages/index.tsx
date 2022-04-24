@@ -43,11 +43,16 @@ export const getStaticProps: GetStaticProps = async () => {
     )
   ).json();
 
-  const recentData: IRecentData = await (
+  const recentData: IRecentData = weatherData ? await (
     await fetch(
       `https://api.openweathermap.org/data/2.5/onecall?lat=${weatherData.coord.lat}&lon=${weatherData.coord.lon}&exclude=daily&appid=${APIKey}`
     )
-  ).json();
+  ).json() : 
+  await (
+    await fetch(
+      `https://api.openweathermap.org/data/2.5/onecall?lat=126.9778&lon=37.5683&exclude=daily&appid=${APIKey}`
+    )
+  ).json()
 
   return { props: { weatherData, recentData } };
 };
